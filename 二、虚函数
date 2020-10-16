@@ -1,0 +1,89 @@
+//IShape.h
+#pragma once
+#include<iostream>
+using namespace std;
+class IShape
+{
+public:
+	virtual float getArea() = 0;
+	virtual string getName() = 0;
+};
+
+//Circle.h
+#pragma once
+#include"IShape.h"
+class CCircle :public IShape
+{
+public:
+	CCircle(float radius);
+	virtual float getArea();
+	virtual string getName();
+private:
+	float m_fRadius;
+};
+
+//Rect.h
+#pragma once
+#include"IShape.h"
+class CCircle :public IShape
+{
+public:
+	CCircle(float radius);
+	virtual float getArea();
+	virtual string getName();
+private:
+	float m_fRadius;
+};
+//Circle.cpp
+#include"Circle.h"
+
+CCircle::CCircle(float radius)
+	:m_fRadius(radius) {};
+
+
+float CCircle::getArea()
+{
+	return 3.14 * m_fRadius * m_fRadius;
+
+}
+
+string CCircle::getName()
+{
+	return "CCircle";
+}
+
+
+//Rect.cpp
+#include"Rect.h"
+CRect::CRect(float fWidth, float fHeight)
+	:m_fWidth(fWidth), m_fHeight(fHeight) {};
+
+
+float CRect::getArea()
+{
+	return m_fHeight * m_fWidth;
+
+}
+
+string CRect::getName()
+{
+	return "CRect";
+}
+
+//main.cpp
+#include"IShape.h"
+#include"Rect.h"
+#include"Circle.h"
+
+using namespace  std;
+int main()
+{
+	IShape* pShape = NULL;
+	pShape = new CCircle(20.2);
+	cout << pShape->getName() << " " << pShape->getArea() << endl;
+	delete pShape;
+
+	pShape = new CRect(20, 10);
+	cout << pShape->getName() << " " << pShape->getArea() << endl;
+	return 0;
+}
