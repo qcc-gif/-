@@ -1,0 +1,48 @@
+#include<iostream>
+using  namespace std;
+
+template <typename T>
+class Complex 
+{
+private:
+	T a;
+	T b;
+public:
+	Complex(){}
+	Complex(T a, T b)
+	{
+		this->a = a;
+		this->b = b;
+	}
+	Complex<T> operator+(Complex& c)
+	{
+		Complex<T> tmp(this->a + c.a, this->b + c.b);
+		return tmp;
+	}
+	Complex<T> operator=(Complex& c)
+	{
+		Complex<T> tmp(this->a =c.a, this->b = c.b);
+		return tmp;
+	}
+	friend ostream& operator<<(ostream& out, Complex& c)
+	{
+		out << c.a << "+" << c.b << "i";
+		return out;
+	}
+
+
+};
+
+
+
+int main()
+{
+	Complex<int> a(10, 20);
+	Complex<int> b(20, 30);
+	Complex<int> c = a + b;
+	Complex<int> d = c;
+
+	cout << c << endl;
+	cout << d << endl;
+	return 0;
+}
