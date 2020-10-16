@@ -1,0 +1,28 @@
+#include<iostream>
+#include<fstream>
+
+using namespace std;
+
+int main()
+{
+
+    //写入操作
+    fstream f;
+    f.open("data.txt", ios::out);
+    f << "这是一开始写进来的字" << endl;
+    f.close(); 
+
+    //追加操作
+   
+    f.open("data.txt", ios::out|ios::app);
+    f << "这是追加的字" << endl;
+    f.close();
+
+    //读取
+    f.open("data.txt", ios::in);
+    string s;
+    while (f >> s)
+        cout << s << endl;
+    f.close();
+    return 0;
+}
